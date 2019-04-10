@@ -1,0 +1,251 @@
+@import "compass/css3";
+
+// Sass Mixins
+
+// Animation Mixin
+
+@mixin animate($animation, $duration, $repeat, $easing) {
+    -webkit-animation: $animation $duration $repeat $easing;
+    -moz-animation: $animation $duration $repeat $easing;
+    -ms-animation: $animation $duration $repeat $easing;
+    animation: $animation $duration $repeat $easing;
+}
+
+// Keyframes Mixin
+// https://gist.github.com/ericam/1607696
+
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+// Main Styles
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background: #d43c8e;
+
+    @include background-image(linear-gradient(bottom, #E1C3ED, #E1C3ED));
+}
+
+.bubble-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 5);
+    font-family: sans-serif;
+    font-size: 13px;
+    color: #333;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.75);
+    }
+}
+
+// Bubble Styles
+
+.bubbles {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.bubble-container {
+    position: absolute;
+    bottom: 0;
+    will-change: transform;
+
+    @include animate(bubblerise, 4s, infinite, ease-in);
+    @include opacity(0);
+}
+
+.bubble {
+    width: 6px;
+    height: 6px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(212, 60, 142, 0.25);
+    will-change: transform;
+
+    @include border-radius(10px);
+    @include animate(bubblewobble, 0.4s, infinite, linear);
+}
+
+// Keyframe Animations
+
+@include keyframes(bubblerise) {
+    0% {
+        bottom: 0;
+
+        @include opacity(0);
+    }
+    5% {
+        bottom: 0;
+
+        @include opacity(1);
+    }
+    99% {
+        @include opacity(1);
+    }
+    100% {
+        bottom: 100%;
+
+        @include opacity(0);
+    }
+}
+
+@include keyframes(bubblewobble) {
+	0% {
+		margin-left: 0;
+	}
+	50% {
+		margin-left: 2px;
+	}
+}
+/*----**/
+
+
+
+
+
+
+
+
+
+
+
+
+/* Menú 
+.navbar-options{
+  padding-top: 20px;
+}*/
+
+/*  
+.navbar-header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}*/
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+  
+/* estilos de texto */
+.text-white {
+  color:white;
+}
+* {
+  margin:0;
+  padding:0;
+  text-align: center;
+}
+
+
+/* Gradiente body y secciones */
+.gradient {
+  -webkit-background: linear-gradient(rgba(231, 76, 60, 0.95), rgba(255, 51, 102, 0.95));
+  -ms-background: linear-gradient(rgba(231, 76, 60, 0.95), rgba(255, 51, 102, 0.95));
+  -moz-background: linear-gradient(rgba(231, 76, 60, 0.95), rgba(255, 51, 102, 0.95));
+  -o-background: linear-gradient(rgba(231, 76, 60, 0.95), rgba(255, 51, 102, 0.95));
+  background: linear-gradient(rgba(231, 76, 60, 0.95), rgba(255, 51, 102, 0.95)); }
+
+.back-white {
+  background-color: #fff;
+}
+
+#section0 , #section1 , #section2 , #section3 , #section4 {
+  padding-top:50px;
+  height:670px;
+} 
+
+ #contact {
+    height:800px;
+    padding-bottom: 50px;
+    background-color: black;
+} 
+
+
+
+
+/* backgrounds de secciones 
+#section0 {padding-top:50px;height:600px;color: #fff; background-color: rgba(214, 221, 228, 0.795);}
+#section1 {padding-top:50px;height:600px;color: #fff; background-color: rgba(176, 181, 185, 0.795);}
+#section2 {padding-top:50px;height:425px;color: #fff; background-color:  rgba(176, 181, 185, 0.795);}
+#section3 {padding-top:50px;height:525px;color: #fff; background-color:  rgba(176, 181, 185, 0.795);}
+#section4 {padding-top:50px;height:525px;color: #fff; background-color:  rgba(176, 181, 185, 0.795);}
+
+
+
+
+/* Bloque Izquierdo */
+#leftSide {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden; }
+
+/* Bloque Derecho */
+#rightSide {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow-x: hidden;
+  background: #fff; }
+
+#home, #homeCenter {
+  width: 100%;
+  height: 100%;
+  z-index: 1; }
+
+.h-content {
+  position: relative;
+  z-index: 0;
+  top: 32vh;
+  width: 100%;
+  padding: 10px 10%;
+  color: #fff; }
+
+#section0 {
+  /*
+  display: flex;
+  align-content: center;
+  flex-direction: row;
+  top: 50% important! ;*/
+  
+}
+
+.title-1 {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+}
+
+.my-photo {
+ padding-top: 8%;
+}
+
+.resum p {
+  text-align: justify;
+}
